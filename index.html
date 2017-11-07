@@ -1,34 +1,36 @@
 <!doctype html>
 <html>
-    <head>
-        <title>Hello Riot</title>
-        <meta charset="utf-8" />
-    </head>
-    <body>
-        <todo></todo>
+  <head>
+    <title>Hello Riot</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <todo></todo>
 
-        <script type="riot/tag" src="todo.tag.html"></script>
-        <!-- include riot.js -->
-        <script src="node_modules/riot/riot+compiler.min.js"></script>
-        <script src="node_modules/sass.js/dist/sass.js"></script>
-        <!-- mount the tag -->
-
-
-
-        <script>
-
-         sass = new Sass();
-
-          riot.parsers.css.sass = function(tagName, css) {
-              compiled = sass.compile(css, function(res) {
-                  return res.text;
-              });
-          }
-
-         riot.mount('todo')
+    <script type="riot/tag" src="todo.tag.html"></script>
+    <!-- include riot.js -->
+    <script src="node_modules/riot/riot+compiler.min.js"></script>
+    <script src="node_modules/sass.js/dist/sass.js"></script>
+    <!-- mount the tag -->
 
 
 
-        </script>
-    </body>
+    <script>
+
+     sass = new Sass();
+
+     // Make the nested callback go away
+     riot.parsers.css.sass = function(tagName, css) {
+         // return "todo div { color: red; }";
+         compiled = sass.compile(css, function(res) {
+             return res.text;
+         });
+     }
+
+     riot.mount('todo')
+
+
+
+    </script>
+  </body>
 </html>
